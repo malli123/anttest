@@ -1,0 +1,30 @@
+<project>
+	<property name="windows.platforms" value="Windows NT,Windows 2000,Windows XP,Windows 7,Windows NT (unknown)"/>
+	<condition property="windowsos">
+	    <os family="windows" />
+	  </condition>
+	<target name="clean">
+		<delete dir="build" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="build/classes" />
+		<javac srcdir="src" destdir="build/classes" />
+	</target>
+
+	<!--
+	<target name="run">
+		<echo message="executing......."/>
+		<exec  executable="c:\\windows\\system32\\cmd.exe" spawn="true">
+			      <arg line="dir" />
+			    </exec>
+	    </target>
+  	-->
+
+	<target name="run">
+		<echo message="OS name is ....... ${os.name}" />
+		<exec os="${windows.platforms}" executable="cmd.exe" spawn="false">
+			<arg line="/c start c:\temp\run.bat" />
+		</exec>
+	</target>
+</project>
